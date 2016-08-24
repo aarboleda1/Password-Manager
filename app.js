@@ -69,7 +69,7 @@ function getAccounts (masterPassword){
     // return;
   //}
   var accounts = storage.getItemSync('accounts')
-  console.log(accounts)
+  // console.log(accounts)
   //use getItemSync to fetch account
   if (typeof accounts !== 'undefined') {
      //decrypt
@@ -86,8 +86,8 @@ function getAccounts (masterPassword){
 }
 
 function saveAccounts(accounts, masterPassword){
-  console.log(accounts)
-  console.log('helloooo')
+  // console.log(accounts)
+  // console.log('helloooo')
   var encryptedAccounts = crypto.AES.encrypt(JSON.stringify(accounts),masterPassword);
   //encrypt accounts
   //console.log(encryptedAccounts)
@@ -95,7 +95,7 @@ function saveAccounts(accounts, masterPassword){
   //setItemSync to save the encrypted accounts
   //when yhou encrypt you end up w a string
   //return teh accounts array
-  console.log(accounts)
+  //console.log(accounts)
   return accounts;
 }
 
