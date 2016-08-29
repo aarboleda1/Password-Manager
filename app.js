@@ -131,23 +131,36 @@ function getAccount (accountName, masterPassword) {
   return matchedAccount;
 }
 
-if (command === 'create') {
-  var createdAccount = createAccount({
-    name: argv.name,
-    username: argv.username,
-    password: argv.password
-  },argv.masterPassword);
-  console.log('Account created!');
-  console.log(createdAccount);
-} else if (command === 'get') {
-  var fetchedAccount = getAccount(argv.name, argv.masterPassword);
+function doWork () {
+  console.log('unable to create account')
+}
 
-  if (typeof fetchedAccount === 'undefined') {
-    console.log('Account not found');
-  } else {
-    console.log('Account found!');
-    console.log(fetchedAccount);
+if (command === 'create') {
+  try {
+    var createdAccount = createAccount({
+      name: argv.name,
+      username: argv.username,
+      password: argv.password
+    },argv.masterPassword);
+    console.log('Account created!');
+    console.log(createdAccount)
+
+  } catch (e) {
+    console.log('unable to create account')
   }
+
+} else if (command === 'get') {
+  try{var fetchedAccount = getAccount(argv.name, argv.masterPassword);
+
+    if (typeof fetchedAccount === 'undefined') {
+      console.log('Account not found');
+    } else {
+      console.log('Account found!');
+      console.log(fetchedAccount);
+    }
+  } catch (e) {
+    console.log('unable to get account')
+    }
 }
 
 //alias not working still
